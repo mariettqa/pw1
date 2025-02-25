@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "datatime.c"
+#include "datatime.h"
 
 int main() {
     //Конструкторы
