@@ -115,13 +115,15 @@ void print_minute(datatime dt){
     printf("%d\n", dt.minute);
 }
 
+void print_date(datatime dt){
+    printf("%d:%d %d.%d.%d\n", dt.hour, dt.minute, dt.day, dt.month, dt.year);
+}
+
 void fprint_date(datatime dt){
     printf("%02d:%02d %02d.%02d.%04d\n", dt.hour, dt.minute, dt.day, dt.month, dt.year);
 }
 
-void print_date(datatime dt){
-    printf("%d:%d %d.%d.%d\n", dt.hour, dt.minute, dt.day, dt.month, dt.year);
-}
+
 #pragma endregion
 #pragma region Сеттеры
 void set_day(datatime * dt, int day){
@@ -211,6 +213,21 @@ void decrement_year(datatime * dt, int year){
 
 #pragma endregion
 #pragma region Ввод
+void enter_day(datatime * dt){
+    scanf("%d", &dt->day);
+}
+void enter_hour(datatime * dt){
+    scanf("%d", &dt->hour);
+}
+void enter_year(datatime * dt){
+    scanf("%d", &dt->year);
+}
+void enter_month(datatime * dt){
+    scanf("%d", &dt->month);
+}
+void enter_minute(datatime * dt){
+    scanf("%d", &dt->minute);
+}
 void enter_date(datatime * dt){
     int day, month, year, hour, minute;
 

@@ -19,7 +19,7 @@ int main() {
     fprint_date(*dt1);
     increment_day(dt1, 1);// Пример переполнения дней в месяцах
     printf("Дата после применения сеттера с переполнением\n");
-    fprint_date(*dt1);
+    fprint_date(*dt1); 
 
     datatime *dt3 = construct(1, 1, 2020, 0, 0);
     datatime *dt4 = construct(1, 1, 2024, 0, 0);
