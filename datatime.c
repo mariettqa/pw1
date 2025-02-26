@@ -126,23 +126,89 @@ void print_date(datatime dt){
 #pragma region Сеттеры
 void set_day(datatime * dt, int day){
     dt->day = day;
+    handle_data_overload(dt);
+}
+
+void handle_data_overload(datatime * dt){
+    datatime * dt1 = create_datatime_from_timestamp(get_timestamp(*dt));
+
+    dt->day = dt1->day;
+    dt->minute = dt1->minute;
+    dt->month = dt1->month;
+    dt->hour = dt1->hour;
+    dt->year = dt1->year;
 }
 
 void set_month(datatime * dt, int month){
     dt->month = month;
+    handle_data_overload(dt);
 }
 
 void set_minute(datatime * dt, int minute){
     dt->minute = minute;
+    handle_data_overload(dt);
 }
 
 void set_hour(datatime * dt, int hour){
     dt->hour = hour;
+    handle_data_overload(dt);
 }
 
 void set_year(datatime * dt, int year){
     dt->year = year;
+    handle_data_overload(dt);
 }
+
+void increment_minute(datatime * dt, int minute){
+    dt->minute += minute;
+    handle_data_overload(dt);
+}
+
+void decrement_minute(datatime * dt, int minute){
+    dt->minute -= minute;
+    handle_data_overload(dt);
+}
+
+void increment_hour(datatime * dt, int hour){
+    dt->hour += hour;
+    handle_data_overload(dt);
+}
+
+void decrement_hour(datatime * dt, int hour){
+    dt->hour -= hour;
+    handle_data_overload(dt);
+}
+
+void increment_day(datatime * dt, int day){
+    dt->day += day;
+    handle_data_overload(dt);
+}
+
+void decrement_day(datatime * dt, int day){
+    dt->day -= day;
+    handle_data_overload(dt);
+}
+
+void increment_month(datatime * dt, int month){
+    dt->month += month;
+    handle_data_overload(dt);
+}
+
+void decrement_month(datatime * dt, int month){
+    dt->month -= month;
+    handle_data_overload(dt);
+}
+
+void increment_year(datatime * dt, int year){
+    dt->year += year;
+    handle_data_overload(dt);
+}
+
+void decrement_year(datatime * dt, int year){
+    dt->year -= year;
+    handle_data_overload(dt);
+}
+
 #pragma endregion
 #pragma region Ввод
 void enter_date(datatime * dt){
@@ -161,7 +227,7 @@ void enter_date(datatime * dt){
 void fenter_date(datatime * dt){
     int day, month, year, hour, minute;
 
-    printf("Введите дату в формате: HH:MM DD.MM.YY\n");
+    printf("Введите дату в формате: HH:MM DD.MM.YYYY\n");
     scanf("%02d:%02d %02d.%02d.%04d", &hour, &minute, &day, &month, &year);
 
     dt -> day = day;
@@ -197,31 +263,9 @@ int not_equals(datatime dt1, datatime dt2){
     return !equals(dt1, dt2);
 }
 #pragma endregion
-#pragma region Временые промежутки
+
 datatime * get_time_difference(datatime dt1, datatime dt2){
     datatime *dt = create_datatime_from_timestamp(abs(get_timestamp(dt1) - get_timestamp(dt2)));
     dt->year -= 1970;
     return dt;
 }
-
-int get_time_difference_minutes(datatime  dt1, datatime  dt2){
-    return abs(get_timestamp(dt1) - get_timestamp(dt2)) / SECONDS_IN_MINUTE;
-}
-
-int get_time_difference_hours(datatime  dt1, datatime  dt2){
-    return abs(get_timestamp(dt1) - get_timestamp(dt2)) / SECONDS_IN_HOUR;
-}
-
-int get_time_difference_days(datatime  dt1, datatime  dt2){
-    return abs(get_timestamp(dt1) - get_timestamp(dt2)) / (SECONDS_IN_HOUR * 24);
-}
-
-int get_time_difference_years(datatime  dt1, datatime  dt2){
-    return get_time_difference(dt1,dt2)->year;
-}
-
-int get_time_difference_months(datatime  dt1, datatime  dt2){
-    return get_time_difference(dt1,dt2)->month + 12 * get_time_difference(dt1,dt2)->year;
-}
-
-#pragma endregion

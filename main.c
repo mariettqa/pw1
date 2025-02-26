@@ -6,20 +6,19 @@ int main() {
     //Конструкторы
     datatime *dt1 = construct(25, 12, 2023, 15, 30);
     datatime *dt2 = construct(26, 12, 2023, 16, 45);
-    
+    print_date(*dt1);
+    print_date(*dt2);
+
     //Сравнения
     printf("dt1 > dt2 %d\n", greater(*dt1, *dt2));
     printf("dt1 < dt2 %d\n", less(*dt1, *dt2));
     printf("dt1 == dt2 %d\n", equals(*dt1, *dt2));
 
     //Сеттеры
-    set_day(dt1, 31);
-    set_month(dt1, 1);
-    set_year(dt1, 2024);
-    set_hour(dt1, 12);
-    set_minute(dt1, 0);
-
-    //Форматированный вывод
+    set_day(dt1, 31); 
+    fprint_date(*dt1);
+    increment_day(dt1, 1);// Пример переполнения дней в месяцах
+    printf("Дата после применения сеттера с переполнением\n");
     fprint_date(*dt1);
 
     datatime *dt3 = construct(1, 1, 2020, 0, 0);
@@ -27,14 +26,8 @@ int main() {
     
     fenter_date(dt4); // Форматированный ввод
     
-    //Интервал
-    int years = get_time_difference_years(*dt3, *dt4);
-    int months = get_time_difference_months(*dt3, *dt4);
-    int days = get_time_difference_days(*dt3, *dt4);
-    int hours = get_time_difference_hours(*dt3, *dt4);
-    int minutes = get_time_difference_minutes(*dt3, *dt4);
-
-    printf("Разница: %d лет, %d месяцев, %d дней, %d часов, %d минут\n", years, months, days, hours, minutes);
+    datatime * diff = get_time_difference(*dt3, *dt4);
+    printf("Разница: %d лет, %d месяцев, %d дней, %d часов, %d минут\n", diff->year, diff->month, diff->day, diff->hour, diff->minute);
 
     //Таймстамп
     printf("Timestamp: %ld сек.\n", get_timestamp(*dt4));
